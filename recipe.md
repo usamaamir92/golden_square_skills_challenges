@@ -68,6 +68,33 @@ Given an empty string the function will return error message "No text entered.".
 
 4. Implement the Behaviour
 
+<!-- USAMA AND CHARLOTTE -->
+
+1. Describe the Problem
+As a user
+So that I can keep track of my tasks
+I want to check if a text includes the string #TODO.
+
+2. Design the Function Signature
+
+The function will be called task_string_includes_todo. It will take one argument - a string of text, and will return True if the string includes #TODO otherwise False.
+
+
+3. Create Examples as Tests
+
+Given the following text "I need to clean the bedroom":
+The function will return False.
+
+Given the following text "I need to clean the bedroom #TODO":
+The function will return True.
+
+Given an empty string the function will return error message "No text entered.".
+
+Given a non string type will return a different error message
+
+
+4. Implement the Behaviour
+
 
 
 
