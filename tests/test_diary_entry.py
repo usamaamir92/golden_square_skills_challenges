@@ -1,5 +1,5 @@
 from lib.diary_entry import *
-
+import pytest
 """
 Given a title and contents, #format returns:
 "My Title: These are the contents"
@@ -64,3 +64,12 @@ def test_reading_chunk_third_time():
     diary_entry.reading_chunk(20, 0.1)
     result = diary_entry.reading_chunk(20, 0.1)
     assert result == "These are"
+
+# Given no title or contents should return error message - 'Need to enter title and contents'
+
+def test_format_no_title_and_no_content() :
+    with pytest.raises(Exception) as e:
+        diary_entry = DiaryEntry('','')
+        diary_entry.format()
+    error_message = str(e.value)
+    assert error_message == 'Need to enter title and contents'

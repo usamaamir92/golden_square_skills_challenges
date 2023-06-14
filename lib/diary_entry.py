@@ -11,6 +11,8 @@ class DiaryEntry:
         #   contents: string
 
     def format(self):
+        if self.title == '' or self.contents == '' :
+            raise Exception('Need to enter title and contents')
         return f"{self.title}: {self.contents}"
         # Returns:
         #   A formatted diary entry, for example:
@@ -33,26 +35,21 @@ class DiaryEntry:
 
     def reading_chunk(self, wpm, minutes):
         number_of_words = wpm*minutes
-        words = self.read_up_to.split()
+        words = self.contents.split()
         start_of_chunk = self.read_up_to
-        end_of_chunk = self.read_up_to + number_of_words
-        chunk = words[start_of_chunk:end_of_chunk]
+        end_of_chunk = int(self.read_up_to + number_of_words)
         self.read_up_to = end_of_chunk
-        return " ".join(chunk)
+        if self.read_up_to > len(self.contents.split()) :
+            self.read_up_to = 0
+            start_of_chunk = self.read_up_to
+            end_of_chunk = int(self.read_up_to + number_of_words)
+            chunk = words[start_of_chunk:end_of_chunk]
+            return " ".join(chunk)
+        else :
+            chunk = words[start_of_chunk:end_of_chunk]
+            self.read_up_to = end_of_chunk
+            return " ".join(chunk)
 
-
-        
-        
-        
-        """if self.chunk == "" and self.second_chunk == "":
-            self.chunk = " ".join(self.contents.split()[0:int(number_of_words)])
-            return self.chunk          
-        elif self.chunk != "" and self.second_chunk == "":
-           self.second_chunk = " ".join(self.contents.split()[int(number_of_words):])
-           return self.second_chunk
-        elif self.chunk != "" and self.second_chunk != "":
-            return self.chunk"""
-        
     
         # Parameters
         #   wpm: an integer representing the number of words the user can read
